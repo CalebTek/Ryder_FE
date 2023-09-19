@@ -1,0 +1,28 @@
+
+
+.container {
+    border-radius: 6px;
+    background-color: var(--primary-bg);
+
+}
+
+.header {
+    padding: .75em .5em;
+    font-weight: 700;
+    border-bottom: 2px solid var(--secondary-bg);
+}
+
+.no_messages_Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: .5rem;
+    padding: 1rem;
+    height: 70%;
+}
+
+.no_messages_Container span:nth-child(3) {
+    color: var(--text-secondary);
+    font-size: 14px;
+}
