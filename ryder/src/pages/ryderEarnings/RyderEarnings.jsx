@@ -3,7 +3,8 @@ import React from 'react';
 import '../../styles/ryderEarnings.css'
 import Vector from '../../images/Vector.svg';
 import Time from '../../images/Time.svg'
-import RiderNavbar from '../../components/dashboard/riderNavbar'
+// import RiderNavbar from '../../components/dashboard/riderNavbar'
+import {RiderNavbar} from "../../components"
 
 
 

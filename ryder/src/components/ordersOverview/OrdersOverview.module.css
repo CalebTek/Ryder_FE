@@ -1,7 +1,7 @@
 
 
 .overview_container {
-    border-radius: 6px;
+    border-radius: 10px;
     background-color: var(--primary-bg);
 }
 
@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: .75em .5em;
+    padding: 1em;
     border-bottom: 2px solid var(--secondary-bg);
 }
 
@@ -32,7 +32,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem .5rem;
+    padding: 1rem ;
 }
 
 .body div:nth-child(1){

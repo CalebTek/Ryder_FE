@@ -1,13 +1,13 @@
 
 
 .container {
-    border-radius: 6px;
+    border-radius: 10px;
     background-color: var(--primary-bg);
 
 }
 
 .header {
-    padding: .75em .5em;
+    padding: 1em;
     font-weight: 700;
     border-bottom: 2px solid var(--secondary-bg);
 }
