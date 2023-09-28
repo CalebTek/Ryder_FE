@@ -4,13 +4,13 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const Passwordreset = () => {
+const ForgetPassword = () => {
   const [forgetpass, setForgetPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$/;
   const [error, setError] = useState("");
   const isEmailValid = emailRegex.test(forgetpass);
-  const [successMessage, setSuccessMessage]   = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   function successful() {
     toast.success(successMessage, {
@@ -21,7 +21,7 @@ const Passwordreset = () => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "colored",
+      theme: "colored"
     });
   }
   function failed() {
@@ -33,7 +33,7 @@ const Passwordreset = () => {
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "colored",
+      theme: "colored"
     });
   }
   const handleSubmit = async (e) => {
@@ -41,12 +41,12 @@ const Passwordreset = () => {
     try {
       if (!isEmailValid) {
         setError("Please enter a valid email address.");
-       failed();
+        failed();
         setSuccessMessage("");
         return;
       }
       const response = await axios.post("http://", {
-        forgetpass,
+        forgetpass
       });
 
       if (!response.data.succeeded) {
@@ -58,7 +58,7 @@ const Passwordreset = () => {
         setSuccessMessage(response.data.data);
         successful();
       }
-      setForgetPassword('');
+      setForgetPassword("");
     } catch (error) {
       if (error.response) {
         setSuccessMessage("");
@@ -79,7 +79,7 @@ const Passwordreset = () => {
         <div className="holders">
           <form className="forgotpassword-form" action="">
             <div className="forgetpassword-container">
-              <h1 className="text-one">ForgotPassword</h1>
+              <h1 className="text-one">Forget Password</h1>
               <p>
                 Enter the email associated with your account and we will send an
                 email with instruction to reset your password
@@ -140,4 +140,4 @@ const Passwordreset = () => {
     </>
   );
 };
-export default Passwordreset;
+export default ForgetPassword;

@@ -1,4 +1,4 @@
-import {useState} from "react"
+import { useState } from "react";
 import styles from "./RiderDashboard.module.css";
 
 //imgs
@@ -8,7 +8,7 @@ import { mastercard } from "../../assets";
 import { MapComponent } from "../../components";
 
 function RiderDashboard() {
-    const [newNotification, setNewNotication] = useState(false)
+  const [newNotification, setNewNotication] = useState(false);
   return (
     <div className={styles.container}>
       <div className={styles.content_body}>
@@ -48,8 +48,8 @@ function RiderDashboard() {
         </button>
       </div>
       <div className={styles.map_container}>
-              <MapComponent className={styles.map_container} />
-              {/* <Notification  /> */}
+        <MapComponent className={styles.map_container} />
+        {/* <Notification  /> */}
       </div>
     </div>
   );
