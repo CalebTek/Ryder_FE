@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import styles from "./RequestRiderForm.module.css";
 import { backArrowIcon } from "../../assets";
 
-import { UserNavbar } from "./UserNavbar";
+//import { UserNavbar } from "../../components/dashboard/UserNavbar";
 import Footer from "../landing_page/footer";
 
 function RequestRiderForm() {
@@ -12,6 +12,7 @@ function RequestRiderForm() {
     pickUpLocation: "",
     dropOffLocation: "",
     dropOffPhoneNumber: "",
+    packageDescription: "",
     Offer: null,
     pickupLatLog: {},
     dropOffLatLog: {},
@@ -120,7 +121,7 @@ function RequestRiderForm() {
 
   return (
     <>
-      <UserNavbar />
+     {/* <UserNavbar /> */}
       <div className={styles.con}>
         <div className={styles.body_container}>
           <div className={styles.header}>
@@ -191,6 +192,16 @@ function RequestRiderForm() {
                 onChange={(e) => handleChange(e)}
               />
             </label>
+            <label htmlFor="packageDescription">
+              <span>Package Description</span>
+              <input
+                type="tel"
+                id="packageDescription"
+                name="packageDescription"
+                value={formData.packageDescription}
+                onChange={(e) => handleChange(e)}
+              />
+            </label>
             <label htmlFor="Offer">
               <span>Offer (NGN)</span>
               <input
@@ -212,4 +223,4 @@ function RequestRiderForm() {
   );
 }
 
-export default RequestRiderForm;
+export default RequestRiderForm;rm;

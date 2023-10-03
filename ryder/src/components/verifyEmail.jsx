@@ -1,8 +1,8 @@
 import React from "react";
-import "../../styles/Passwordresetverification.css";
-import mail from "../../images/Vector.png";
+import "../styles/Passwordresetverification.css";
+import mail from "../images/Vector.png";
 
-const Passwordresetverification = () => {
+const VerifyEmail = () => {
   return (
     <div className="passwordverification">
       <div className="holder">
@@ -20,4 +20,4 @@ const Passwordresetverification = () => {
   );
 };
 
-export default Passwordresetverification;
+export default VerifyEmail;

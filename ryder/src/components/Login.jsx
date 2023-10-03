@@ -6,7 +6,7 @@ import Logo from "../images/RyderLogo.svg";
 import axios from "axios";
 import jwtDecode from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import '../styles/Login.css'
+import "../styles/Login.css";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ const Login = () => {
 
       const response = await axios.post("", {
         email,
-        password,
+        password
       });
 
       if (response.data.succeeded) {
@@ -121,7 +121,7 @@ const Login = () => {
                <span className="span">Ryder</span>
              </p> */}
         </div>
-        
+
         <div className="right-login col-md-5">
           <div className="content-login">
             <div className="logoholder-login mt-6">
@@ -156,7 +156,9 @@ const Login = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <button href="/passwordreset" className="text-wrapper-6">Forgot password?</button>
+              <button href="/passwordreset" className="text-wrapper-6">
+                Forgot password?
+              </button>
 
               {/* Display error message */}
               {error && (
@@ -192,7 +194,7 @@ const Login = () => {
                   className="submitting"
                   type="submit"
                   onClick={handleLogin}
-                  disabled={loading} 
+                  disabled={loading}
                 >
                   {" "}
                   Login{" "}
@@ -202,7 +204,10 @@ const Login = () => {
                 <label>
                   <p>
                     {" "}
-                    Don't have an account? <a className="create" href="/customerSignup">Create account</a>
+                    Don't have an account?{" "}
+                    <a className="create" href="/customer-signup">
+                      Create account
+                    </a>
                   </p>
                 </label>
               </div>
@@ -215,5 +220,3 @@ const Login = () => {
 };
 
 export default Login;
-
-
