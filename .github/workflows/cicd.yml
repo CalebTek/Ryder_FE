@@ -28,8 +28,7 @@ jobs:
      - name: Configure AWS Credentials
        uses: aws-actions/configure-aws-credentials@v1
        with:
-        #  role-to-assume: ${{ secrets.MANAGED_INTERNSHIP_S3_ROLE }}
-         role-to-assume: arn:aws:iam::669220627507:role/managed-internship-s3-role
+         role-to-assume: ${{ secrets.MANAGED_INTERNSHIP_S3_ROLE }}
          aws-region: us-east-1
 
      - name: Deploy static site to S3 bucket
