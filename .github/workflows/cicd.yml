@@ -27,6 +27,7 @@ jobs:
      - name: Build static file
        run: |
         cd ryder
+        CI=false
         npm run build
 
      - name: Configure AWS Credentials
