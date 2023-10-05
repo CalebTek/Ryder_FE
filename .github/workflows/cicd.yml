@@ -14,16 +14,20 @@ jobs:
    runs-on: ubuntu-latest
    steps:
      - name: Checkout
-       uses: actions/checkout@v2
+       uses: actions/checkout@v3
 
      - name: Setup node
        uses: actions/setup-node@v2
 
      - name: Install dependencies
-       run: npm install
+       run: |
+        cd ryder
+        npm install
 
      - name: Build static file
-       run: npm run build
+       run: |
+        cd ryder
+        npm run build
 
      - name: Configure AWS Credentials
        uses: aws-actions/configure-aws-credentials@v1
@@ -32,7 +36,9 @@ jobs:
          aws-region: us-east-1
 
      - name: Deploy static site to S3 bucket
-       run: aws s3 sync ./build s3://ryder-frontend
+       run: |
+        cd ryder
+        aws s3 sync ./build s3://ryder-frontend
 
      - name: Invallidate Cloudfront
-       run: aws cloudfront create-invalidation --distribution-id dddddd --paths '/*'
+       run: aws cloudfront create-invalidation --distribution-id E1634OH31V8Z1H --paths '/*'
