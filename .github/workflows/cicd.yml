@@ -1,0 +1,39 @@
+name: Deploy to PROD
+
+on:
+ push:
+   branches:
+     - cicd-setup
+
+permissions:
+    id-token: write
+    contents: read
+
+jobs:
+ Deploy:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout
+       uses: actions/checkout@v2
+
+     - name: Setup node
+       uses: actions/setup-node@v2
+
+     - name: Install dependencies
+       run: npm install
+
+     - name: Build static file
+       run: npm run build
+
+     - name: Configure AWS Credentials
+       uses: aws-actions/configure-aws-credentials@v1
+       with:
+        #  role-to-assume: ${{ secrets.MANAGED_INTERNSHIP_S3_ROLE }}
+         role-to-assume: arn:aws:iam::669220627507:role/managed-internship-s3-role
+         aws-region: us-east-1
+
+     - name: Deploy static site to S3 bucket
+       run: aws s3 sync ./build s3://ryder-frontend
+
+     - name: Invallidate Cloudfront
+       run: aws cloudfront create-invalidation --distribution-id dddddd --paths '/*'
