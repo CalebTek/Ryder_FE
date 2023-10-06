@@ -1,0 +1,45 @@
+name: Deploy to PROD
+
+on:
+ push:
+   branches:
+     - main
+
+permissions:
+    id-token: write
+    contents: read
+
+jobs:
+ Deploy:
+   runs-on: ubuntu-latest
+   steps:
+     - name: Checkout
+       uses: actions/checkout@v3
+
+     - name: Setup node
+       uses: actions/setup-node@v2
+
+     - name: Install dependencies
+       run: |
+        cd ryder
+        npm install
+
+     - name: Build static file
+       run: |
+        cd ryder
+        CI=false
+        npm run build
+
+     - name: Configure AWS Credentials
+       uses: aws-actions/configure-aws-credentials@v1
+       with:
+         role-to-assume: ${{ secrets.MANAGED_INTERNSHIP_S3_ROLE }}
+         aws-region: us-east-1
+
+     - name: Deploy static site to S3 bucket
+       run: |
+        cd ryder
+        aws s3 sync ./build s3://ryder-frontend
+
+     - name: Invallidate Cloudfront
+       run: aws cloudfront create-invalidation --distribution-id E1634OH31V8Z1H --paths '/*'
