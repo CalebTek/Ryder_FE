@@ -1,11 +1,10 @@
-
-
 .con {
     width: 100%;
     min-height: 100vh;
     background: var(--secondary-bg);
     display: flex;
     place-content: center;
+    /* background-color: red; */
 }
 
 .body_container {
@@ -14,7 +13,8 @@
     min-height: 530px;
     background-color: var(--primary-bg);
     padding: 1rem;
-    border-radius: 6px;
+    border-radius: 10px;
+    box-shadow: 0 0 6px gainsboro;
 }
 
 .header {
@@ -27,14 +27,14 @@
     align-items: flex-start;
 }
 
-.header> div{
+.header>div {
     display: flex;
     align-items: center;
     justify-content: flex-start;
     gap: .5rem;
 }
 
-.header> span {
+.header>span {
     font-weight: 700;
     display: block;
     width: 100%;
@@ -45,8 +45,8 @@
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
-    /* justify-content: center;
-    align-items: center; */
+    justify-content: center;
+    align-items: center;
     gap: 1.3rem;
     min-height: 70vh;
 }
@@ -56,6 +56,24 @@ label {
     flex-direction: column;
     gap: .7rem;
     width: 100%;
+    position: relative;
+}
+
+label>* {
+    display: block;
+    width: 100%;
+}
+
+.suggestions {
+    position: absolute;
+    padding: 4px;
+    z-index: 10;
+    width: 100%;
+    height: min-content;
+}
+
+.suggestions li:hover {
+    background: #fff;
 }
 
 input {
@@ -63,6 +81,7 @@ input {
     font-size: 16px;
     border: #00000021 1px solid;
     outline: none;
+    flex: 1;
 }
 
 input:focus {
@@ -99,10 +118,13 @@ li:hover {
 
 button:hover {
     color: var(--text-prompt);
-    
+
     background: var(--text-prompt-bg);
 }
 
+.back_btn {
+    cursor: pointer;
+}
 
 @media (min-width: 992px) {
     .body_container {
@@ -111,11 +133,20 @@ button:hover {
         box-shadow: 0px 0px 8px var(--secondary-bg);
     }
 
+    .header {
+        margin-bottom: 2rem;
+    }
+
     button {
         margin-top: 3rem;
     }
-}
 
-.back_btn {
-    cursor: pointer;
+    .form_con {
+        gap: 1.4rem;
+        min-height: min-content;
+        /* border: 1px solid red; */
+        width: 80%;
+        margin: 0 auto;
+        padding-bottom: 2rem;
+    }
 }

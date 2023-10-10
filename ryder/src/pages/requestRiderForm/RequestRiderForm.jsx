@@ -2,8 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styles from "./RequestRiderForm.module.css";
 import { backArrowIcon } from "../../assets";
-
-//import { UserNavbar } from "../../components/dashboard/UserNavbar";
+import { UserNavbar } from "../../components";
 import Footer from "../landing_page/footer";
 
 function RequestRiderForm() {
@@ -104,24 +103,45 @@ function RequestRiderForm() {
   };
 
   const handleFormSubmition = async () => {
-    const pickupLatLog = await getLocationDetails(
-      formData.pickUpLocation?.place_id
-    );
+    try
+    {
+      const pickupLatLog = await getLocationDetails(
+        formData.pickUpLocation?.place_id
+      );
+  
+      const dropOffLatLog = await getLocationDetails(
+        formData.dropOffLocation?.place_id
+      );
+  
+      setFormData((prev) => ({
+        ...prev,
+        pickupLatLog: pickupLatLog.geometry.location,
+        dropOffLatLog: dropOffLatLog.geometry.location,
+      }));
 
-    const dropOffLatLog = await getLocationDetails(
-      formData.dropOffLocation?.place_id
-    );
+      const response = await fetch(process.env.REACT_APP_API_BASE_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(setFormData),
+      });
 
-    setFormData((prev) => ({
-      ...prev,
-      pickupLatLog: pickupLatLog.geometry.location,
-      dropOffLatLog: dropOffLatLog.geometry.location,
-    }));
+      if(response.ok){
+        const data = await response.json();
+        console.log("Order placed successfully:", data);
+      } else {
+        console.error("Failed to place order");
+      }
+  
+    } catch (error) {
+      console.error("Error", error);
+    }    
   };
 
   return (
     <>
-     {/* <UserNavbar /> */}
+      <UserNavbar />
       <div className={styles.con}>
         <div className={styles.body_container}>
           <div className={styles.header}>
@@ -223,4 +243,4 @@ function RequestRiderForm() {
   );
 }
 
-export default RequestRiderForm;rm;
+export default RequestRiderForm;
