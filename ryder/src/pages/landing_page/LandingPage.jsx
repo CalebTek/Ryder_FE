@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // import required images
-import bgImage from "../../images/slider-bg-img.svg";
+import bgImage from "../../images/slider-bg-img.png";
 import bgImage2 from "../../images/Pick-n-Pay.svg";
 import customer from "../../images/client-round-frame.svg";
 
@@ -128,10 +128,9 @@ const StarRating = ({ rating }) => {
 };
 
 const LandingPage = () => {
-  const linkStyle = {textDecoration: 'none', color: '#000', fontSize: '18px', fontWeight: '600'};
   return (
     <div>
-      <AppNavbar/>
+      <AppNavbar />
       {/* First Section */}
       <section
         className="bg-image bg-custom"
@@ -145,7 +144,7 @@ const LandingPage = () => {
           justifyContent: "center",
           alignItems: "center",
           textAlign: "center",
-          backgroundColor: "rgba(0, 0, 0, 0.4)"
+          backgroundColor: "rgba(0, 0, 0, 0.6) !important"
         }}
       >
         <div>
@@ -154,21 +153,28 @@ const LandingPage = () => {
             style={{
               fontFamily: "Inter",
               fontWeight: "700px",
-              fontSize: "66px"
+              fontSize: "66px",
+              lineHeight: "71.54px"
             }}
           >
-            Fast, Reliable & Quality Dispatch Service
+            Fast, Reliable & Quality <br /> Dispatch Service
           </h1>
           <p className="text-light">Send. Track. Receive.</p>
-          <div className="containr d-flex justify-content-center row">
-            <div className="d-flex justify-content-center mt-4 col-6">
-              <button className="btn btn-warning me-2 col-md-6">
-                <Link to="/customerSignUp" style={linkStyle}>Register as a Customer</Link>
-              </button>
-              <button className="btn btn-outline-light col-md-6">
-                <Link to="/riderSignUp" style={linkStyle}>Register as a Rider</Link>
-              </button>
-            </div>
+          <div
+            className="d-flex justify-content-center mt-4"
+            style={{
+              fontFamily: "Inter"
+            }}
+          >
+            <Link
+              to="/customerSignUp"
+              className="btn btn-warning me-2 fw-medium"
+            >
+              Register as a Customer
+            </Link>
+            <Link to="/riderSignUp" className="btn btn-outline-light fw-medium">
+              Register as a Rider
+            </Link>
           </div>
         </div>
       </section>
@@ -202,7 +208,9 @@ const LandingPage = () => {
                     alt="Service Icon"
                     className="service-icon"
                   />
-                  <p className="service-description fw-bold">{service.description}</p>
+                  <p className="service-description fw-bold">
+                    {service.description}
+                  </p>
                   <p className="service-details ">{service.details}</p>
                 </div>
               </div>
@@ -274,7 +282,7 @@ const LandingPage = () => {
                     alt={review.name}
                     className="rounded-circle mx-auto d-block mt-3"
                   />
-                  <p className="text-center mt-3">{review.review}</p>
+                  <p className="mt-3">{review.review}</p>
                   <div className="d-flex justify-content-between">
                     <p className="fw-bold">{review.name}</p>
                     <StarRating rating={review.rating} />
@@ -285,7 +293,7 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </div>
   );
 };

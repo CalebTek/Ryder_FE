@@ -1,12 +1,10 @@
-
-
 .contanier {
-    border-radius: 6px;
+    border-radius: 10px;
     background-color: var(--primary-bg);
 }
 
 .header {
-    padding: .75em .5em;
+    padding: 1em;
     font-weight: 700;
     border-bottom: 2px solid var(--secondary-bg);
 
@@ -21,7 +19,7 @@
 }
 
 .orders_container {
-    padding: 1em .5em;
+    padding: 1em;
 
 }
 
@@ -46,6 +44,7 @@
     display: block;
     align-self: flex-start;
     min-width: 20%;
+    text-align: center;
 }
 
 .pending {
@@ -54,7 +53,7 @@
     padding: .3em;
     text-align: center;
     display: block;
-    border-radius: 2px;
+    border-radius: 20px;
 }
 
 .done {
@@ -63,5 +62,5 @@
     text-align: center;
     display: block;
     padding: .3em;
-    border-radius: 2px;
+    border-radius: 20px;
 }

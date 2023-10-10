@@ -1,20 +1,18 @@
-
-
-
 .con {
     width: 100%;
     min-height: 100vh;
     background-color: var(--secondary-bg);
+    border: 1px solid var(--secondary-bg);
 }
 
 .body_Con {
     width: 95%;
-    margin: auto;
+    margin: 2rem auto;
 }
 
 
 .header {
-    display: flex;    
+    display: flex;
 }
 
 .content_container {
@@ -23,12 +21,12 @@
 }
 
 .contact_container {
-    border-radius: 6px;
+    border-radius: 10px;
     background-color: var(--primary-bg);
 }
 
 .header {
-    padding: .75em .5rem;
+    padding: 1em;
     font-weight: 700;
     border-bottom: 2px solid var(--secondary-bg);
 
@@ -37,7 +35,8 @@
 }
 
 .contact_body {
-    padding: 1rem .5rem;
+    padding: 1rem;
+    /* border: 1px solid red; */
 
 }
 
@@ -71,36 +70,36 @@ small {
         max-width: 1136px !important;
     }
 
-        .content_container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 2fr 2fr 1fr 2fr;
-            gap: 1rem !important;
-            height: 600px !important;
-        }
-    
-        .item:nth-child(1) {
-            grid-column: 1 / span 1;
-            grid-row: 1 / span 1;
-        }
-    
-        .item:nth-child(2) {
-            grid-column: 2 / span 1;
-            grid-row: 1 / span 3;
-            min-height: 100%;
-            height: 100%;
-        }
-    
-        .item:nth-child(3) {
-            grid-column: 1 / span 1;
-            grid-row: 2 / span 8;
-            min-height: 100%;
-            height: 100%;
-        }
-    
-        .item:nth-child(4) {
-            grid-column: 2 / span 1;
-            grid-row: 3 / span 1;
-        }
-}
+    .content_container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 2fr 2fr 1fr 2fr;
+        gap: 2rem !important;
+        height: 600px !important;
+    }
 
+    .item:nth-child(1) {
+        grid-column: 1 / span 1;
+        grid-row: 1 / span 1;
+    }
+
+    .item:nth-child(2) {
+        grid-column: 2 / span 1;
+        grid-row: 1 / span 3;
+        min-height: 100%;
+        height: 100%;
+    }
+
+    .item:nth-child(3) {
+        grid-column: 1 / span 1;
+        grid-row: 2 / span 8;
+        min-height: 100%;
+        height: 100%;
+    }
+
+    .item:nth-child(4) {
+        /* margin-top: 1rem; */
+        grid-column: 2 / span 1;
+        grid-row: 3 / span 1;
+    }
+}

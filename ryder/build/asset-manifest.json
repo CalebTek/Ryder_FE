@@ -1,0 +1,40 @@
+{
+  "files": {
+    "main.css": "/static/css/main.62e39d1b.css",
+    "main.js": "/static/js/main.4f14d48f.js",
+    "static/media/Pick-n-Pay.svg": "/static/media/Pick-n-Pay.8d38740578df0590d77ea52a31dfdb92.svg",
+    "static/media/RyderImg.svg": "/static/media/RyderImg.fae7f63b64b0ae42b9bd0f21e93167ee.svg",
+    "static/media/Bike.svg": "/static/media/Bike.7534e63db791497c1a4d23216b02cb81.svg",
+    "static/media/slider-bg-img.png": "/static/media/slider-bg-img.36647c8ef234e21068c7.png",
+    "static/media/client-round-frame.svg": "/static/media/client-round-frame.f2249fbab1bf965ef69182bca913f0b6.svg",
+    "static/media/avatar.svg": "/static/media/avatar.757b572c4c029903b9fbcaa1b73c6a33.svg",
+    "static/media/mastercard.svg": "/static/media/mastercard.d618630c6f17799e01f13de472dbccdf.svg",
+    "static/media/MessagesIcon.svg": "/static/media/MessagesIcon.8487135e5742bf6c3223d235c1de7f91.svg",
+    "static/media/Ryder-Logo.svg": "/static/media/Ryder-Logo.086261407681d1b6ddc6882beefb09a5.svg",
+    "static/media/ryder.svg": "/static/media/ryder.086261407681d1b6ddc6882beefb09a5.svg",
+    "static/media/Vector.svg": "/static/media/Vector.be644d2ab30a5b2e5a06d60053f1aead.svg",
+    "static/media/dispatch-buddy.svg": "/static/media/dispatch-buddy.014b98f7e12ca22bec9b72b230259169.svg",
+    "static/media/fluent_building-shop-16-filled.svg": "/static/media/fluent_building-shop-16-filled.27f3f21909cfca99b3d24f7ab130c896.svg",
+    "static/media/eos-icons_secure-data-outlined.svg": "/static/media/eos-icons_secure-data-outlined.6ba50f7e66446cdd5262dcf652a25d93.svg",
+    "static/media/locationIcon.svg": "/static/media/locationIcon.c05c50c8c0ac75f7d2ac8021901cfa7a.svg",
+    "static/media/fa-solid_shipping-fast.svg": "/static/media/fa-solid_shipping-fast.2da488513e8d349fe3d1ffba1abeff31.svg",
+    "static/media/shoppingBagIcon.svg": "/static/media/shoppingBagIcon.efb87269ef0655f4afd77177eafde3f0.svg",
+    "static/media/phoneIcon.svg": "/static/media/phoneIcon.ea483f03f0383831a4be510540383279.svg",
+    "static/media/Time.svg": "/static/media/Time.f9afe62fddaee89339187b08b3c9218b.svg",
+    "static/media/backArrowIcon.svg": "/static/media/backArrowIcon.7f74458aa9219e43a2d1220834b46558.svg",
+    "static/media/ri_customer-service-fill.svg": "/static/media/ri_customer-service-fill.d228573bca4b46ef7dfa1b46a79abd8c.svg",
+    "static/media/overviewIcon.svg": "/static/media/overviewIcon.854b68bd03c607100ba62557b53f5850.svg",
+    "static/media/bx_world.svg": "/static/media/bx_world.edea81e19988065bcabe8945c081e379.svg",
+    "static/media/mailIcon.svg": "/static/media/mailIcon.724afc780939cc83683ba9d670b19300.svg",
+    "static/media/ic_baseline-access-time.svg": "/static/media/ic_baseline-access-time.db9331e238e0f30fc3e1ace2a6a9a272.svg",
+    "static/media/RyderLogo.svg": "/static/media/RyderLogo.7857845ef92d25ebc85da8245f85ef0e.svg",
+    "index.html": "/index.html",
+    "static/media/Email.svg": "/static/media/Email.e45baa88e9d8bf8aea2e45a439363b3a.svg",
+    "main.62e39d1b.css.map": "/static/css/main.62e39d1b.css.map",
+    "main.4f14d48f.js.map": "/static/js/main.4f14d48f.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.62e39d1b.css",
+    "static/js/main.4f14d48f.js"
+  ]
+}

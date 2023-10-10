@@ -1,23 +1,28 @@
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styles from "./RequestRiderForm.module.css";
 import { backArrowIcon } from "../../assets";
 
+import { UserNavbar } from "../../components";
+import Footer from "../landing_page/footer";
+
 function RequestRiderForm() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     pickUpLocation: "",
     dropOffLocation: "",
     dropOffPhoneNumber: "",
-    Offer: 0,
+    Offer: null,
+    pickupLatLog: {},
+    dropOffLatLog: {},
   });
 
   const [pickUpSuggestions, setPickUpSuggestions] = useState([]);
   const [dropOffSuggestions, setDropOffSuggestions] = useState([]);
   const [selectedPickUpLocation, setSelectedPickUpLocation] = useState("");
   const [selectedDropOffLocation, setSelectedDropOffLocation] = useState("");
-  const [showPickUpSuggestions, setShowPickUpSuggestions] = useState(true)
-  const [showDropOffSuggestions, setShowDropOffSuggestions] = useState(true)
+  const [showPickUpSuggestions, setShowPickUpSuggestions] = useState(false);
+  const [showDropOffSuggestions, setShowDropOffSuggestions] = useState(false);
 
   useEffect(() => {
     if (formData.pickUpLocation) {
@@ -53,135 +58,158 @@ function RequestRiderForm() {
           console.error("Error fetching drop-off location suggestions:", error)
         );
     } else {
-      setDropOffSuggestions([])
+      setDropOffSuggestions([]);
     }
-  }, [formData.dropOffLocation])
+  }, [formData.dropOffLocation]);
 
   const handlePickUpInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prev) => ({ ...prev, [name]: value }))
-    setSelectedPickUpLocation(value)
-    setShowPickUpSuggestions(true)
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setSelectedPickUpLocation(value);
+    setShowPickUpSuggestions(true);
   };
 
   const handleDropOffInputChange = (event) => {
     const { name, value } = event.target;
-    setFormData((prev) => ({ ...prev, [name]: value }))
-    setSelectedDropOffLocation(value)
-    setShowDropOffSuggestions(true)
+    setFormData((prev) => ({ ...prev, [name]: value }));
+    setSelectedDropOffLocation(value);
+    setShowDropOffSuggestions(true);
   };
 
   const handleSelectPickUpLocation = (location) => {
-    setSelectedPickUpLocation(location.description);
-    setFormData((prev) => ({ ...prev, pickUpLocation: location.description }));
-    setShowPickUpSuggestions(false); 
-  }
+    setSelectedPickUpLocation(location);
+    setFormData((prev) => ({ ...prev, pickUpLocation: location }));
+    setShowPickUpSuggestions(false);
+  };
 
   const handleSelectDropOffLocation = (location) => {
-    setSelectedDropOffLocation(location.description);
-    setFormData((prev) => ({ ...prev, dropOffLocation: location.description }));
-    setShowDropOffSuggestions(false)
-  }
+    setSelectedDropOffLocation(location);
+    setFormData((prev) => ({ ...prev, dropOffLocation: location }));
+    setShowDropOffSuggestions(false);
+  };
 
-  const handlePickUpInputBlur = () => {
-    setShowPickUpSuggestions(false)
-  }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
-  const handleDropOffInputBlur = () => {
-    setShowDropOffSuggestions(false)
-  }
+  const getLocationDetails = async (placeId) => {
+    const response = await fetch(
+      `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&key=${process.env.REACT_APP_googleMapsKey}`
+    );
+    const data = await response.json();
 
+    return data.result;
+  };
+
+  const handleFormSubmition = async () => {
+    const pickupLatLog = await getLocationDetails(
+      formData.pickUpLocation?.place_id
+    );
+
+    const dropOffLatLog = await getLocationDetails(
+      formData.dropOffLocation?.place_id
+    );
+
+    setFormData((prev) => ({
+      ...prev,
+      pickupLatLog: pickupLatLog.geometry.location,
+      dropOffLatLog: dropOffLatLog.geometry.location,
+    }));
+  };
 
   return (
-    <div className={styles.con}>
-          <div className={styles.body_container}>
-        <div className={styles.header}>
-          <div className={styles.back_btn} onClick={()=>navigate(-1)}>
-            <img src={backArrowIcon} alt="" />
-            <span>Back</span>
+    <>
+      <UserNavbar />
+      <div className={styles.con}>
+        <div className={styles.body_container}>
+          <div className={styles.header}>
+            <div className={styles.back_btn} onClick={() => navigate(-1)}>
+              <img src={backArrowIcon} alt="" />
+              <span>Back</span>
+            </div>
+            <span>Request a Rider</span>
           </div>
-          <span>Request a Rider</span>
-        </div>
-        <div className={styles.form_con}>
-          <label htmlFor="pickUpLocation">
-            <span>Pick Up Location</span>
-            <input
-              type="text"
-              id="pickUpLocation"
-              name="pickUpLocation"
-              value={selectedPickUpLocation}
-              onChange={handlePickUpInputChange}
-              onBlur={handlePickUpInputBlur}
-            />
-            {showPickUpSuggestions && (
-              <ul className="suggestions">
-                {pickUpSuggestions.map((location) => (
-                  <li
-                    key={location.place_id}
-                    onClick={() => handleSelectPickUpLocation(location.description)}
-                  >
-                    {location.description}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </label>
-
-          <label htmlFor="dropOffLocation">
-            <span>Drop off Location</span>
-            <input
-              type="text"
-              id="dropOffLocation"
-              name="dropOffLocation"
-              value={selectedDropOffLocation}
-              onChange={handleDropOffInputChange}
-              onBlur={handleDropOffInputBlur}
-            />
-            {showDropOffSuggestions && (
-              <ul className="suggestions">
-                {dropOffSuggestions.map((location) => (
-                  <li
-                    key={location.place_id}
-                    onClick={() =>
-                      handleSelectDropOffLocation(location.description)
-                    }
-                  >
-                    {location.description}
-                  </li>
-                ))}
-              </ul>
-            )}
-          </label>
-
-          <label htmlFor="dropOffPhoneNumber">
-            <span>Drop off Phone Number</span>
-            <input
-              type="text"
-              id="dropOffPhoneNumber"
-              name="dropOffPhoneNumber"
-              value={formData.dropOffPhoneNumber}
-              onChange={handlePickUpInputChange}
-            />
-          </label>
-
-          <label htmlFor="Offer">
-            <span>Offer (NGN)</span>
-            <input
-              type="text"
-              id="Offer"
-              name="Offer"
-              value={formData.Offer}
-              onChange={handlePickUpInputChange}
-            />
-          </label>
-
-          <button type="button" onClick={() => console.log(formData)}>
-            Order Ride
-          </button>
+          <div className={styles.form_con}>
+            <label htmlFor="pickUpLocation">
+              <span>Pick Up Location</span>
+              <input
+                type="text"
+                id="pickUpLocation"
+                name="pickUpLocation"
+                value={selectedPickUpLocation?.description}
+                onChange={handlePickUpInputChange}
+              />
+              {showPickUpSuggestions && (
+                <ul
+                  className={styles.suggestions}
+                  style={{ display: showPickUpSuggestions ? "block" : "none" }}
+                >
+                  {pickUpSuggestions.map((location) => (
+                    <li
+                      key={location.place_id}
+                      onClick={() => handleSelectPickUpLocation(location)}
+                    >
+                      {location.description}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </label>
+            <label htmlFor="dropOffLocation">
+              <span>Drop off Location</span>
+              <input
+                type="text"
+                id="dropOffLocation"
+                name="dropOffLocation"
+                value={selectedDropOffLocation?.description}
+                onChange={handleDropOffInputChange}
+              />
+              {showDropOffSuggestions && (
+                <ul
+                  className={styles.suggestions}
+                  style={{ display: showDropOffSuggestions ? "block" : "none" }}
+                >
+                  {dropOffSuggestions.map((location) => (
+                    <li
+                      key={location.place_id}
+                      onClick={() => handleSelectDropOffLocation(location)}
+                    >
+                      {location.description}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </label>
+            <label htmlFor="dropOffPhoneNumber">
+              <span>Drop off Phone Number</span>
+              <input
+                type="tel"
+                id="dropOffPhoneNumber"
+                name="dropOffPhoneNumber"
+                value={formData.dropOffPhoneNumber}
+                onChange={(e) => handleChange(e)}
+              />
+            </label>
+            <label htmlFor="Offer">
+              <span>Offer (NGN)</span>
+              <input
+                type="number"
+                id="Offer"
+                name="Offer"
+                value={formData.Offer}
+                onChange={(e) => handleChange(e)}
+              />
+            </label>
+            <button type="button" onClick={handleFormSubmition}>
+              Order Ride
+            </button>
+          </div>
         </div>
       </div>
-      </div>
+      <Footer />
+    </>
   );
-};
+}
 
 export default RequestRiderForm;

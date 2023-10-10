@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import ryder from "../../images/ryder.svg";
 import { LinkContainer } from "react-router-bootstrap";
 import { BsBell } from "react-icons/bs";
-import { FaToggleOff, FaToggleOn } from "react-icons/fa"; // Import the Font Awesome icons for the toggle
+import { FaToggleOff, FaToggleOn } from "react-icons/fa";
 
 import Avatar from "../../images/avatar.svg";
 

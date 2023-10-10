@@ -1,5 +1,7 @@
 
-
+p, h1, h2, h3, h4 {
+  font-family: "Inter";
+}
 
 
 .ft-bg-custom {
@@ -26,10 +28,14 @@
 /* buttons */
 .btn {
   padding: 16px, 24px, 16px, 24px !important;
-  color: #ffffff
-  ;
+  color: #ffffff !important;
+  font-family: "Inter";
 }
 .btn-warning {
   background-color: #FB8500 !important;
 }
 
+.btn:hover{
+  color: #FB8500 !important;
+  background-color: #ffffff !important;
+}
