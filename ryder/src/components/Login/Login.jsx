@@ -143,7 +143,7 @@ const Login = () => {
                                 
                             </div>
    
-                             <Link to="/passwordreset" style={{textDecoration: 'none', color: 'blue'}}>Forgot password?</Link>
+                             <Link to="/ForgetPassword" style={{textDecoration: 'none', color: 'blue'}}>Forgot password?</Link>
                            
                             
                             {/* Display error message */}
