@@ -1,13 +1,14 @@
 import { useNavigate, Navigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import styles from "./RequestRiderForm.module.css";
 import { backArrowIcon } from "../../assets";
 
 import { UserNavbar } from "../../components";
 import Footer from "../landing_page/footer";
+import Loader from "../../components/sign_page/loader";
 
 function RequestRiderForm() {
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     pickUpLocation: "",
@@ -322,7 +323,9 @@ function RequestRiderForm() {
 
     console.log(dataIsValid, "data validity")
     if (dataIsValid) {
-      
+
+      setLoading(true);
+
       const pickupLatLog = await getLocationDetails(
         formData.pickUpLocation?.place_id
       );
@@ -338,6 +341,7 @@ function RequestRiderForm() {
           dropOffLatLog: dropOffLatLog.geometry.location,
         };
       });
+      setLoading(false);
     } else {
       console.log("Oops")
     }
@@ -347,6 +351,7 @@ function RequestRiderForm() {
     <>
       <UserNavbar />
       <div className={styles.con}>
+        {loading ? <Loader visiblility={loading}/> : !<Loader />}
         <div className={styles.body_container}>
           <div className={styles.header}>
             <div className={styles.back_btn} onClick={() => navigate(-1)}>
