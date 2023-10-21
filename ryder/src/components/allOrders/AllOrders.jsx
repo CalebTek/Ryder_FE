@@ -2,7 +2,7 @@ import styles from "./AllOrders.module.css";
 import React, { useState, useEffect } from "react";
 
 function AllOrders() {
-  const [orders, setOrders] = useState([]);
+  const [orders, setOrders] = useState([]); // Initialize with an empty array
   const appUserId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
 
@@ -15,7 +15,7 @@ function AllOrders() {
         },
       })
         .then((response) => response.json())
-        .then((data) => setOrders(data.data))
+        .then((data) => setOrders(data.data || [])) // Use an empty array if data.data is null
         .catch((error) => console.error(error));
     }
   }, [appUserId, token]);
@@ -27,20 +27,24 @@ function AllOrders() {
         <span>See all</span>
       </div>
       <div className={styles.orders_container}>
-        {orders.map((order) => (
-          <div key={order.orderId} className={styles.orders_item}>
-            <div>
-              <span>
-                <span className={styles.dayOfTheWeek}>Today</span> {order.updatedAt}
-              </span>
-              <span>Order No - {order.orderId}</span>
+        {orders.length === 0 ? (
+          <div>No orders available.</div>
+        ) : (
+          orders.map((order) => (
+            <div key={order.orderId} className={styles.orders_item}>
+              <div>
+                <span>
+                  <span className={styles.dayOfTheWeek}>Today</span> {order.updatedAt}
+                </span>
+                <span>Order No - {order.orderId}</span>
+              </div>
+              <div>
+                <span className={styles[order.status.toLowerCase()]}>{order.status}</span>
+                <span> &#x20A6; {order.amount}</span>
+              </div>
             </div>
-            <div>
-              <span className={styles[order.status.toLowerCase()]}>{order.status}</span>
-              <span> &#x20A6; {order.amount}</span>
-            </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
     </div>
   );
