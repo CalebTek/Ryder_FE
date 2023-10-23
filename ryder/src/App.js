@@ -20,6 +20,7 @@ import ResetPassword from "./components/passwordresets/resetPassword";
 import RyderEarnings from "./pages/ryderEarnings/RyderEarnings";
 import VerificationConfirm from "./components/verificationConfirm";
 import RiderHistory from "./components/Others/riderHistory";
+import Bidding from "./pages/rider_bidding/bidding";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/customer-signUp" exact element={<CustomerSignUp />} />
           <Route path="/rider-signup" exact element={<RiderSignUp />} />
           <Route path="/forget-password" exact element={<ForgetPassword />} />
+          <Route path="/rider-bidding" exact element={<Bidding/>}/>
           <Route
             path="/password-reset-verification"
             exact
