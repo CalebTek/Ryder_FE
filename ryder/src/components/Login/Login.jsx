@@ -66,6 +66,7 @@ const Login = () => {
         localStorage.setItem("userId", response.data.data.userId);
         localStorage.setItem("riderId", response.data.data.riderId);
         localStorage.setItem("token", response.data.data.token);
+        localStorage.setItem("email", formData.email);
 
         var res = response.data.data.userRole;
         if (res === "Rider") {
