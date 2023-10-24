@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import * as signalR from "@microsoft/signalr";
-
 
 function SignalRChat() {
   const [connection, setConnection] = useState(null);
@@ -9,10 +8,9 @@ function SignalRChat() {
   useEffect(() => {
     // Initialize the SignalR connection
     const newConnection = new signalR.HubConnectionBuilder()
-      .withUrl("http://localhost:7173/notification/negotiate?negotiateVersion=1") // Replace with the actual URL of your SignalR hub
+      .withUrl("http://localhost:5265/notificationsHub") // Replace with the actual URL of your SignalR hub
       .build();
-      
-      
+
     // Set up event handlers for incoming messages
     newConnection.on("IncomingRequest", (message) => {
       // Handle incoming request notification
@@ -32,7 +30,6 @@ function SignalRChat() {
     // Start the SignalR connection
     newConnection.start().then(() => {
       setConnection(newConnection);
-     
     });
 
     return () => {
@@ -44,7 +41,6 @@ function SignalRChat() {
   }, []);
 
   return (
-    
     <div>
       <h2>Real-Time Notifications</h2>
       <ul>

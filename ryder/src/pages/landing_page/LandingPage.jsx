@@ -24,46 +24,47 @@ const servicesData = [
   {
     id: 1,
     icon: secure_reliable,
-    description: "Reliable and secure",
+    description: "Safe and Reliable Dispatch",
     details:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ante maecenas fusce orci nullam aenean arcu tellus. Massa rhoncus vestibulum, at nunc pellentesque ornare urna."
+      "Our platform ensures safe and reliable dispatch services. We prioritize the security of both riders and customers to provide a trusted experience."
   },
   {
     id: 2,
     icon: time_delivery,
-    description: "On-time delivery",
+    description: "On-Time Order Delivery",
     details:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ante maecenas fusce orci nullam aenean arcu tellus. Massa rhoncus vestibulum, at nunc pellentesque ornare urna."
+      "We emphasize on-time delivery of orders. Riders can count on our platform to efficiently manage deliveries and meet delivery deadlines."
   },
   {
     id: 3,
     icon: shipping,
-    description: "Track your shipment",
+    description: "Track Orders in Real-Time",
     details:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ante maecenas fusce orci nullam aenean arcu tellus. Massa rhoncus vestibulum, at nunc pellentesque ornare urna."
+      "Track your dispatched orders in real-time. Our advanced tracking system allows riders to monitor the progress of each delivery."
   },
   {
     id: 4,
     icon: customer_service,
-    description: "Great Customer Service",
+    description: "Dedicated Rider Support",
     details:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ante maecenas fusce orci nullam aenean arcu tellus. Massa rhoncus vestibulum, at nunc pellentesque ornare urna."
+      "Our customer service team is here to support our riders. If you have any questions or encounter issues during deliveries, we're just a call away."
   },
   {
     id: 5,
     icon: world,
-    description: "Nationwide Delivery",
+    description: "Deliver Nationwide",
     details:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ante maecenas fusce orci nullam aenean arcu tellus. Massa rhoncus vestibulum, at nunc pellentesque ornare urna."
+      "Join our network of riders and deliver orders nationwide. Whether it's local deliveries or long-distance hauls, we've got you covered."
   },
   {
     id: 6,
     icon: building,
-    description: "Order Fulfilment",
+    description: "Efficient Order Fulfilment",
     details:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. In ante maecenas fusce orci nullam aenean arcu tellus. Massa rhoncus vestibulum, at nunc pellentesque ornare urna."
+      "Efficiently fulfill orders with our platform. We provide the tools and resources you need to streamline the dispatch process."
   }
 ];
+
 
 // Define the customer reviews data
 const customerReviews = [
@@ -71,7 +72,7 @@ const customerReviews = [
     id: 1,
     image: customer,
     review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id est leo a eget risus nunc. Arcu amet nibh arcu risus vulputate. Amet, ac nec, nunc viverra massa blandit nec enim volutpat. Cursus pretium velit eget justo, turpis.",
+      "Exceptional Service! The riders provided outstanding delivery service, always on time and reliable. I highly recommend them.",
     name: "Jenifer Harrison",
     rating: 5
   },
@@ -79,7 +80,7 @@ const customerReviews = [
     id: 2,
     image: customer,
     review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id est leo a eget risus nunc. Arcu amet nibh arcu risus vulputate. Amet, ac nec, nunc viverra massa blandit nec enim volutpat. Cursus pretium velit eget justo, turpis.",
+      "Great Experience! I had a positive experience with the riders. They were punctual and handled my parcels with care.",
     name: "John Smith",
     rating: 4
   },
@@ -87,7 +88,7 @@ const customerReviews = [
     id: 3,
     image: customer,
     review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id est leo a eget risus nunc. Arcu amet nibh arcu risus vulputate. Amet, ac nec, nunc viverra massa blandit nec enim volutpat. Cursus pretium velit eget justo, turpis.",
+      "Reliable Service! The riders were dependable and provided excellent delivery service. I'm satisfied with their performance.",
     name: "Alice Johnson",
     rating: 5
   },
@@ -95,7 +96,7 @@ const customerReviews = [
     id: 4,
     image: customer,
     review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id est leo a eget risus nunc. Arcu amet nibh arcu risus vulputate. Amet, ac nec, nunc viverra massa blandit nec enim volutpat. Cursus pretium velit eget justo, turpis.",
+      "Impressive Service! I was pleased with the riders' professionalism and timely deliveries. They exceeded my expectations.",
     name: "Jenifer Harrison",
     rating: 4
   },
@@ -103,7 +104,7 @@ const customerReviews = [
     id: 5,
     image: customer,
     review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id est leo a eget risus nunc. Arcu amet nibh arcu risus vulputate. Amet, ac nec, nunc viverra massa blandit nec enim volutpat. Cursus pretium velit eget justo, turpis.",
+      "Good Service! The riders were efficient, and my parcels arrived in good condition. I appreciate their efforts.",
     name: "John Smith",
     rating: 4
   },
@@ -111,11 +112,12 @@ const customerReviews = [
     id: 6,
     image: customer,
     review:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Id est leo a eget risus nunc. Arcu amet nibh arcu risus vulputate. Amet, ac nec, nunc viverra massa blandit nec enim volutpat. Cursus pretium velit eget justo, turpis.",
+      "Excellent Service! The riders consistently delivered my parcels promptly and professionally. I'm a satisfied customer.",
     name: "Alice Johnson",
     rating: 5
   }
 ];
+
 
 // StarRating component
 const StarRating = ({ rating }) => {
@@ -167,12 +169,12 @@ const LandingPage = () => {
             }}
           >
             <Link
-              to="/customerSignUp"
+              to="/customer-signUp"
               className="btn btn-warning me-2 fw-medium"
             >
               Register as a Customer
             </Link>
-            <Link to="/riderSignUp" className="btn btn-outline-light fw-medium">
+            <Link to="/rider-signup" className="btn btn-outline-light fw-medium">
               Register as a Rider
             </Link>
           </div>
@@ -246,10 +248,10 @@ const LandingPage = () => {
                   Quality Riders & Partners Ready to Deliver
                 </h1>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Convallis volutpat tortor ultricies tincidunt magna. Faucibus
-                  tempus pretium sed enim integer at aliquet a. Semper vel id
-                  lectus quis vitae, velit est. Orci mi sed dui viverra.
+                  Our seasoned riders and trusted partners are here to ensure your
+                  parcels reach their destination seamlessly. We prioritize efficient delivery,
+                  providing you with a reliable and hassle-free experience.
+                  With a commitment to excellence, we are your go-to solution for all your dispatch needs"
                 </p>
               </div>
             </div>

@@ -1,6 +1,84 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;600&family=Nunito+Sans:opsz,wght@6..12,200;6..12,300;6..12,400;6..12,500;6..12,600&display=swap');
+.inform{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.search{
+    display: flex;
+    flex-direction: column;
+}
+.designer{
+    background-color: rgb(245, 242, 242);
+    height: 40px;
+    cursor: pointer;
+}
+.takers{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 10px;
+}
+.takers .txt {
+    overflow: hidden;
+    background-color: red;
+}
 
+.selection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(245, 242, 242);
+    width: max-content;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.iconn{
+    color: #000000; 
+    pointer-events: none; 
+    margin: 0 5px 5px 0;
+    cursor: pointer;
+}
+.selection span {
+    font-size: 12px;
+}
+
+.input_container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.icon {
+    color: #000000; 
+    pointer-events: none; 
+    width: 18px;
+    margin-right: 5px;
+    position: absolute;
+    top: center;
+    left: 10px;
+}
+.topper_container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.top_control{
+    padding: 8px 8px 8px 40px;
+    border-radius: 10px;
+}
+.form_control {
+    padding: 8px 8px 8px 40px;
+    border-radius: 10px;
+  }
 .left {
     display: flex;
     justify-content: right;
@@ -35,7 +113,6 @@
     font-family: Inter;
     width: 100%;
 }
-
 .holder{
     display: flex;
     justify-content: center;

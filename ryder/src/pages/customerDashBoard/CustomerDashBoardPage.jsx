@@ -51,7 +51,7 @@ function CustomerDashBoard() {
                     </span>
                     <span className={styles.contact_infomation}>
                       <img src={phoneIcon} alt="phone icon" />
-                      <span>0703 XXX XXXX</span>
+                      <span>081 4953 1424</span>
                     </span>
                     <span className={styles.contact_infomation}>
                       <img src={locationIcon} alt="location icon" />

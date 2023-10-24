@@ -1,3 +1,4 @@
+
 # Created by https://www.toptal.com/developers/gitignore/api/react,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=react,visualstudiocode
 
@@ -35,7 +36,7 @@ sketch
 # Ignore all local history of files
 .history
 .ionide
-
-
-# End of https://www.toptal.com/developers/gitignore/api/react,visualstudiocode
 .env
+.vs/*
+.vs
+# End of https://www.toptal.com/developers/gitignore/api/react,visualstudiocode

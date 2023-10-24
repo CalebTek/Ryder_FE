@@ -1,42 +1,140 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Navbar, Nav, Container, Dropdown } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ryder from "../../images/ryder.svg";
 import { LinkContainer } from "react-router-bootstrap";
 import { BsBell } from "react-icons/bs";
 import { FaToggleOff, FaToggleOn } from "react-icons/fa";
+import defaultAvatar from "../../images/avatar.svg"; // Default avatar image
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import SignalRChat from "../SignalRChat";
 
-import Avatar from "../../images/avatar.svg";
+const RiderNavbar = () => {
+  const navigate = useNavigate();
+  const [riderData, setRiderData] = useState({
+    name: "",
+    imageUrl: defaultAvatar, // Default URL to the rider's profile image
+  });
+  
+  const [riderId, setRiderId] = useState("");
+  const [userId, setUserId] = useState("");
+  const [token, setToken] = useState("");
+  const [response, setResponse] = useState(null);
+  const [error, setError] = useState(null);
+  const [isOnline, setIsOnline] = useState(false);
 
-const RiderNavbar = ({ riderData }) => {
-  riderData = {
-    name: "Babatunde", // User's name
-    imageUrl: Avatar // URL to the user's profile image
+
+  useEffect(() => {
+    // Check if appUserId and token are available in localStorage
+    const appUserId = localStorage.getItem("userId");
+    const token = localStorage.getItem("token");
+
+    if (appUserId && token) {
+      // Define the URL to fetch rider information
+      const apiUrl = `https://ryder-test.onrender.com/api/v1/User/UserInformation/${appUserId}`;
+
+      // Make an HTTP GET request to fetch user information with authorization headers
+      axios
+        .get(apiUrl, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          // Update userData with the fetched data
+          const { data } = response.data;
+          const { firstName, profilePictureUrl } = data;
+
+          const updatedUserData = {
+            name: firstName, // Use the first name as the rider's name
+            imageUrl: profilePictureUrl || defaultAvatar, // Use profilePictureUrl if available, otherwise default avatar
+          };
+          setRiderData(updatedUserData);
+        })
+        .catch((error) => {
+          console.error("Error fetching user information:", error);
+        });
+    }
+  }, []);
+
+  const handleLogout = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      // Define the URL for logout
+      const logoutUrl = "https://ryder-test.onrender.com/api/v1/Authentication/Logout";
+
+      // Make an HTTP POST request to log out with authorization headers
+      axios
+        .post(logoutUrl, null, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+
+          localStorage.removeItem("token");
+          localStorage.removeItem("userId");
+
+          navigate("/login");
+        })
+        .catch((error) => {
+          console.error("Error logging out:", error);
+        });
+    }
   };
 
-  const notifications = [
-    {
-      id: 1,
-      text: "New order received.",
-      date: "2 hours ago"
-    },
-    {
-      id: 2,
-      text: "Payment confirmed.",
-      date: "Yesterday"
-    },
-    {
-      id: 3,
-      text: "Delivery in progress.",
-      date: "3 days ago"
-    }
-  ];
+  // const notifications = [
+  //   {
+  //     id: 1,
+  //     text: "New order received.",
+  //     date: "2 hours ago"
+  //   },
+  //   {
+  //     id: 2,
+  //     text: "Payment confirmed.",
+  //     date: "Yesterday"
+  //   },
+  //   {
+  //     id: 3,
+  //     text: "Delivery in progress.",
+  //     date: "3 days ago"
+  //   }
+  // ];
 
-  const [isOnline, setIsOnline] = useState(false);
+ useEffect(() => {
+    const user = localStorage.getItem("userId");
+    setUserId(user);
+    const rider = localStorage.getItem("riderId");
+    setRiderId(rider);
+    const token = localStorage.getItem("token");
+    setToken(token);
+  }, []);
 
   const toggleOnlineStatus = () => {
     setIsOnline(!isOnline);
+
+    try {
+      const data = {
+        availabilityStatus: isOnline === true ? 2 : 1,
+      };
+      const response = axios.post(
+        `https://ryder-test.onrender.com/api/v1/Rider/update-availability/${riderId}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setResponse(response.data);
+      console.log(response.data);
+    } catch (error) {
+      setError(error.message);
+    }
   };
+
 
   return (
     <Navbar bg="white" expand="lg">
@@ -61,7 +159,7 @@ const RiderNavbar = ({ riderData }) => {
             <LinkContainer to="/earnings">
               <Nav.Link>Earnings</Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/">
+            <LinkContainer to="/ryder-dasboard">
               <Nav.Link>Availability</Nav.Link>
             </LinkContainer>
             {/* Render the appropriate icon based on the isOnline state */}
@@ -80,21 +178,22 @@ const RiderNavbar = ({ riderData }) => {
                 style={{ color: "#FB8500" }}
               />
             )}
+            <LinkContainer to="/">
+              <Nav.Link>Logout</Nav.Link>
+            </LinkContainer>
           </Nav>
           <Nav>
             <Dropdown alignRight>
               <Dropdown.Toggle variant="transparent" className="nav-link">
-                <BsBell size={24} />
+                <BsBell size={24} color="black"/>
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                {notifications.map((notification) => (
-                  <Dropdown.Item key={notification.id}>
-                    <LinkContainer to="/notification">
-                      <div>{notification.text}</div>
-                    </LinkContainer>
-                    <div className="text-muted">{notification.date}</div>
-                  </Dropdown.Item>
-                ))}
+                <Dropdown.Item>
+                  <LinkContainer to="/notification">
+                    <SignalRChat />
+                  </LinkContainer>
+                  <div className="text-muted"></div>
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
             <div className="d-flex align-items-center ml-3">
