@@ -20,6 +20,9 @@ import ResetPassword from "./components/passwordresets/resetPassword";
 import RyderEarnings from "./pages/ryderEarnings/RyderEarnings";
 import VerificationConfirm from "./components/verificationConfirm";
 import RiderHistory from "./components/Others/riderHistory";
+import Events from "./components/Others/events";
+import Bidding from "./components/Others/bidding";
+import VerifyPayment from "./components/Others/verifyPayment";
 
 function App() {
   return (
@@ -45,6 +48,9 @@ function App() {
           <Route path="/reset-password" exact element={<ResetPassword />} />
           <Route path="/confirmation" exact element={<VerificationConfirm />} />
           <Route path="/ride-history" exact element={<RiderHistory />} />
+          <Route path="/events" exact element={<Events />} />
+          <Route path="/bidding" exact element={<Bidding />} />
+          <Route path="/verify-payment" exact element={<VerifyPayment />} />
         </Routes>
       </div>
     </Router>

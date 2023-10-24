@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;700&family=Nunito+Sans:opsz,wght@6..12,200;6..12,300;6..12,400;6..12,500;6..12,600&display=swap');
+
+
+.bid_container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Inter;
+    margin-bottom: 30px;
+    gap: 24px;
+}
+
+.inside_body{
+    width: 80%;
+}
+
+.bid_topper .message {
+    display: flex;
+    align-items: center;
+    background-color: rgba(251, 133, 0, 0.10);
+    padding: 5px 10px;
+}
+.message img {
+    margin-right:  5px;
+}
+
+.elements {
+    flex: 0 0 calc(33% - 10px);
+    margin: 5px;
+    background-color: #fff;
+    width: 330px;
+    border-radius: 10px;
+    padding: 10px 10px 20px 10px;
+}
+.elements span {
+    color: #C4C4C4;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;;
+}
+.elements h5{
+    color: #21334F;
+    font-family: Inter;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+}
+.inner_content{
+    display: flex;
+    flex-direction: row;
+}
+
+.title_body {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.buttons{
+    
+}
+
+.accept{
+    background-color: rgba(251, 133, 0, 0.10);
+    color: #F8B02B;
+}
+
+.decline{
+    background-color: #fff;
+    color: #000;
+}
+
+
+.button-container button:disabled {
+    text-decoration: line-through;
+    color: #ccc;
+    pointer-events: none;
+}

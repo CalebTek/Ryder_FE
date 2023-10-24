@@ -7,8 +7,12 @@ import { BsBell } from "react-icons/bs";
 
 import defaultAvatar from "../../images/avatar.svg"; // Default avatar image
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+//https://ryder-test.onrender.com/api/v1/Authentication/Logout
 
 const UserNavbar = () => {
+  const navigate = useNavigate();
   const [userData, setUserData] = useState({
     name: "",
     imageUrl: defaultAvatar, // Default URL to the user's profile image
@@ -51,6 +55,33 @@ const UserNavbar = () => {
     }
   }, []);
 
+  const handleLogout = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      // Define the URL for logout
+      const logoutUrl = "https://ryder-test.onrender.com/api/v1/Authentication/Logout";
+
+      // Make an HTTP POST request to log out with authorization headers
+      axios
+        .post(logoutUrl, null, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+
+          localStorage.removeItem("token");
+          localStorage.removeItem("userId");
+
+          navigate("/login");
+        })
+        .catch((error) => {
+          console.error("Error logging out:", error);
+        });
+    }
+  };
+
   const notifications = [
     {
       id: 1,
@@ -89,8 +120,8 @@ const UserNavbar = () => {
             <LinkContainer to="/payment">
               <Nav.Link>Payment</Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/logout">
-              <Nav.Link>Logout</Nav.Link>
+            <LinkContainer to="/login">
+              <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
             </LinkContainer>
           </Nav>
           <Nav>

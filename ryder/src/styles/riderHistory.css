@@ -38,9 +38,8 @@
 .inner_content .title{
     display: flex;
     justify-content: left;
-    /* gap: 40px; */
-    /* background-color: white; */
     margin-bottom: 10px;
+    width: 100%;
 }
 .sub1{
     text-align: center;
