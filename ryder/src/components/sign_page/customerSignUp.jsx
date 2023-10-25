@@ -136,7 +136,7 @@ function CustomerSignUp() {
 
                         <form action="" method="post" className='elements'>
                             <h3 className={`${styles.SignUp_H4} mt-4`}>Sign Up as a Customer</h3>
-                            <div className="form-holder col-md-8">
+                            <div className="form-holder col-md-12">
                                 <label className='mt-2'><b>First Name</b></label>
                                 <div className={`${styles.input_container}`}>
                                     <input
@@ -150,7 +150,7 @@ function CustomerSignUp() {
                                 </div>
                             </div>
 
-                            <div className="form-holder col-md-8">
+                            <div className="form-holder col-md-12">
                                 <label className='mt-2'><b>Last Name</b></label>
                                 <div className={`${styles.input_container}`}>
                                     <input
@@ -163,7 +163,7 @@ function CustomerSignUp() {
                                     <img src={mailLogo} alt="" className={`icon ${styles.icon}`} />
                                 </div>
                             </div>
-                            <div className="form-holder col-md-8">
+                            <div className="form-holder col-md-12">
                                 <label className='mt-2'><b>Phone Number</b></label>
                                 <div className={`${styles.input_container}`}>
                                     <input
@@ -176,7 +176,7 @@ function CustomerSignUp() {
                                     <img src={mailLogo} alt="" className={`icon ${styles.icon}`} />
                                 </div>
                             </div>
-                            <div className="form-holder col-md-8">
+                            <div className="form-holder col-md-12">
                                 <label className='mt-2'><b>Email Address</b></label>
                                 <div className={`${styles.input_container}`}>
                                     <input
@@ -189,7 +189,7 @@ function CustomerSignUp() {
                                     <img src={mailLogo} alt="" className={`icon ${styles.icon}`} />
                                 </div>
                             </div>
-                            <div className="form-holder col-md-8">
+                            <div className="form-holder col-md-12">
                                 <label className='mt-2'><b>Password</b></label>
                                 <div className={`${styles.input_container}`}>
                                     <input
@@ -202,7 +202,7 @@ function CustomerSignUp() {
                                     <img src={PasswordLogo} alt="" className={`icon ${styles.icon}`} />
                                 </div>
                             </div>
-                            <div className="form-holder col-md-8">
+                            <div className="form-holder col-md-12">
                                 <label className='mt-2'><b>Confirm Password</b></label>
                                 <div className={`${styles.input_container}`}>
                                     <input
@@ -217,21 +217,21 @@ function CustomerSignUp() {
                             </div>
 
                             {/* Display error message */}
-                            {error && <div className="error-message col-md-7" style={{ textAlign: 'center', color: 'red' }}>{error}</div>}
+                            {error && <div className="error-message col-md-12" style={{ textAlign: 'center', color: 'red' }}>{error}</div>}
 
                             {/* Display success message */}
-                            {successMessage && <div className={`${styles.messages1}form-holder col-md-7`} style={{ textAlign: 'center', color: 'green' }}>
+                            {successMessage && <div className={`${styles.messages1}form-holder col-md-12`} style={{ textAlign: 'center', color: 'green' }}>
                                 <small><b>{successMessage}</b></small>
                             </div>}
 
-                            <div className="form-holder col-md-8" >
+                            <div className="form-holder col-md-12" >
                                 <button
                                     className={`${styles.submitting}`}
                                     type="submit"
                                     onClick={handleRegister}
                                 > Sign Up</button>
                             </div>
-                            <div className="form-holder mt-2" style={{ textAlign: 'left' }}>
+                            <div className="form-holder mt-2" style={{ textAlign: 'center' }}>
                                 <label>
                                     <p> Already have an account? <a href="/login">SignIn</a></p>
                                 </label>

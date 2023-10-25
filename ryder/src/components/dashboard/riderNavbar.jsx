@@ -83,6 +83,7 @@ const RiderNavbar = () => {
           console.error("Error logging out:", error);
         });
     }
+    localStorage.clear();
   };
 
   // const notifications = [
@@ -134,8 +135,9 @@ const RiderNavbar = () => {
       setError(error.message);
     }
   };
-
-
+  function logout() {
+    localStorage.clear();
+  }
   return (
     <Navbar bg="white" expand="lg">
       <Container>
@@ -179,7 +181,7 @@ const RiderNavbar = () => {
               />
             )}
             <LinkContainer to="/">
-              <Nav.Link>Logout</Nav.Link>
+                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
             </LinkContainer>
           </Nav>
           <Nav>

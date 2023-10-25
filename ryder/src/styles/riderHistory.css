@@ -8,23 +8,33 @@
     margin-bottom: 50px;
 }
 .dropelements{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
     border-bottom: 1px solid rgb(196, 194, 194);
     padding: 25px 10px;
+    width: 1000px;
+    /* background-color: red; */
+}
+.dropelements div{
+    width: 210px;
+
+    /* background-color: black; */
 }
 .inside_body{
     display: flex;
     flex-direction: column;
-    width: 800px;
+    /* width: 650px; */
     margin-top: 50px;
     background-color: #f1f1f0;
     padding: 30px;
-    height: auto;
+    /* height: auto; */
 }
 .inside_body .topper{
     display: flex;
     justify-content: space-between;
     border-bottom: 1px solid rgb(196, 194, 194);
-    width: 100%;
+    /* width: 100%; */
     margin-bottom: 20px;
 }
 .topper .filter{
@@ -35,11 +45,16 @@
 .filter span{
     padding: 0 10px;
 }
+.inner_content{
+    display: flex;
+    flex-direction: column;
+    /* background-color: red; */
+}
 .inner_content .title{
     display: flex;
     justify-content: left;
     margin-bottom: 10px;
-    width: 100%;
+    /* width: 100%; */
 }
 .sub1{
     text-align: center;

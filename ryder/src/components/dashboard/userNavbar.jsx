@@ -57,7 +57,7 @@ const UserNavbar = () => {
 
   const handleLogout = () => {
     const token = localStorage.getItem("token");
-
+    
     if (token) {
       // Define the URL for logout
       const logoutUrl = "https://ryder-test.onrender.com/api/v1/Authentication/Logout";
@@ -80,6 +80,7 @@ const UserNavbar = () => {
           console.error("Error logging out:", error);
         });
     }
+    localStorage.clear();
   };
 
   const notifications = [
