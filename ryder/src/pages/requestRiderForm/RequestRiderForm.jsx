@@ -5,6 +5,7 @@ import { backArrowIcon } from "../../assets";
 
 import { UserNavbar } from "../../components";
 import Footer from "../landing_page/footer";
+import axios from 'axios';
 
 function RequestRiderForm() {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ function RequestRiderForm() {
     pickUpLocation: "",
     dropOffLocation: "",
     dropOffPhoneNumber: "",
+    packageDescription: "",
     Offer: null,
     pickupLatLog: {},
     dropOffLatLog: {},
@@ -23,6 +25,9 @@ function RequestRiderForm() {
   const [selectedDropOffLocation, setSelectedDropOffLocation] = useState("");
   const [showPickUpSuggestions, setShowPickUpSuggestions] = useState(false);
   const [showDropOffSuggestions, setShowDropOffSuggestions] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
 
   useEffect(() => {
     if (formData.pickUpLocation) {
@@ -102,7 +107,41 @@ function RequestRiderForm() {
     return data.result;
   };
 
-  const handleFormSubmition = async () => {
+  const handleFormSubmission = async () => {
+    try
+    {
+      const requestBody = {
+        pickUpLocation: formData.pickUpLocation,
+        dropOffLocation: formData.dropOffLocation,
+        dropoffPhoneNumber: formData.dropoffPhoneNumber,
+        packageDescription: formData.packageDescription,
+        Offer: formData.Offer,
+        pickupLatLog: formData.pickupLatLog,
+        dropOffLatLog: formData.dropOffLatLog
+      };
+
+      const response = await axios.post('https://localhost:7173/api/v1/Order/placeOrder', requestBody);
+
+      console.log('Response from the server:', response.data);
+
+      if(response.data.success){
+        setSuccessMessage('Order placed successfully');
+        setErrorMessage('');
+      }else{
+        setErrorMessage(response.data.message);
+        setSuccessMessage('');
+      }
+    }
+    catch (error)
+    {
+      console.error('An error occurred while submitting the order:', error);
+      setErrorMessage('An error occurred. Please try again');
+      setSuccessMessage('');
+    }
+  };
+
+  const getLocationDetailsAndSubmit = async () =>{
+    try{
     const pickupLatLog = await getLocationDetails(
       formData.pickUpLocation?.place_id
     );
@@ -111,12 +150,28 @@ function RequestRiderForm() {
       formData.dropOffLocation?.place_id
     );
 
+      console.log('Pickup LatLog:', pickupLatLog);
+      console.log('DropOff LatLog:', dropOffLatLog);
+
     setFormData((prev) => ({
       ...prev,
       pickupLatLog: pickupLatLog.geometry.location,
       dropOffLatLog: dropOffLatLog.geometry.location,
     }));
+
+    handleFormSubmission();
+
+  }catch(error){
+    console.error('Error retrieving location details:', error);
+    setErrorMessage('Error retrieving location details. Please try again.');
+    setSuccessMessage('');
+  }
+
   };
+
+  const handleFormSubmition = async () => {
+    getLocationDetailsAndSubmit();
+  }
 
   return (
     <>
@@ -191,6 +246,16 @@ function RequestRiderForm() {
                 onChange={(e) => handleChange(e)}
               />
             </label>
+            <label htmlFor="packageDescription">
+              <span>Package Description</span>
+              <input
+                type="tel"
+                id="packageDescription"
+                name="packageDescription"
+                value={formData.packageDescription}
+                onChange={(e) => handleChange(e)}
+              />
+            </label>
             <label htmlFor="Offer">
               <span>Offer (NGN)</span>
               <input
@@ -201,6 +266,16 @@ function RequestRiderForm() {
                 onChange={(e) => handleChange(e)}
               />
             </label>
+            {successMessage && (
+                <div className="success-message">
+                  {successMessage}
+                </div>
+              )}
+            {errorMessage && (
+                <div className="error-message">
+                  {errorMessage}
+                </div>
+              )}
             <button type="button" onClick={handleFormSubmition}>
               Order Ride
             </button>
