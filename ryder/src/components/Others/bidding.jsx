@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../../../src/styles/bidding.css';
 import info from '../../images/icons/Info.png'
 import RiderNavbar from '../dashboard/riderNavbar';
+import { useNavigate } from "react-router-dom";
     
 const Bidding = () => {
     const [orderHistory, setOrderHistory] = useState([]);
@@ -10,10 +11,11 @@ const Bidding = () => {
     const [acceptedOrderIndex, setAcceptedOrderIndex] = useState(-1);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [orderLoading, setOrderLoading] = useState({});
-
-    const RideHistoryEntry = ({ pickLocation, droplocation, item, Amount, orderId, onAccept, onDecline, isDeclined, email}) => {
+    const navigate = useNavigate();
+    
+    const RideHistoryEntry = ({ pickLocation, droplocation, item, Amount, orderId, onAccept, onDecline, isDeclined, email, name}) => {
     const handleAccept = () => {
-        onAccept(orderId);
+        onAccept(orderId, email);
     };
 
     const handleDecline = () => {
@@ -42,7 +44,7 @@ const Bidding = () => {
       <div className="button-container">
             <button
                 className={`accept ${orderLoading[orderId] ? 'loading' : ''}`}
-                onClick={() => handleAccept(orderId, email)}
+                onClick={() => handleAccept(orderId, email, name)}
                 disabled={isDeclined}
             >
                 Accept Request
@@ -59,7 +61,7 @@ const Bidding = () => {
   );
 };
 
-    // localStorage.setItem('authToken', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjNlYTQ5YmE3LTI4ZTUtNDIyYy1hMDZkLTg0MDc2NjRkY2M5ZSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6Ik1vc2VzQGdtYWlsLmNvbSIsImp0aSI6IjZlNzE1OWI5LTJhOTktNGNiMi04NzdlLWMzYzkxNzE4NTBjZCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2dpdmVubmFtZSI6IlByYWlzZSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3N1cm5hbWUiOiJNb3NlcyIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL21vYmlsZXBob25lIjoiMDgxNDk1MzE0MjQiLCJyb2xlcyI6IlJpZGVyIiwiZXhwIjoxNjk4MDg2MTkwLCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDU0LyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwNTQvIn0.N6dPJ4iOg6RCQqqKLrfokHeLa7uQbBHP0Jihxv_hqgQ");
+    // localStorage.setItem('token', "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjNlYTQ5YmE3LTI4ZTUtNDIyYy1hMDZkLTg0MDc2NjRkY2M5ZSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2VtYWlsYWRkcmVzcyI6Ik1vc2VzQGdtYWlsLmNvbSIsImp0aSI6IjdmZjEzMTAxLTAyOTYtNDBkMS1iZTdhLWNjNTYyZWEzMjFiZCIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2dpdmVubmFtZSI6IlByYWlzZSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL3N1cm5hbWUiOiJNb3NlcyIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL21vYmlsZXBob25lIjoiMDgxNDk1MzE0MjQiLCJyb2xlcyI6IlJpZGVyIiwiZXhwIjoxNjk4MTc1MzA4LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MDU0LyIsImF1ZCI6Imh0dHBzOi8vbG9jYWxob3N0OjcwNTQvIn0.b8hvXG0ka8jBWSetOgZ6-GLJziunav1K-MrMXtSAtYM");
     // localStorage.setItem('email', "ogwuchedavid1@gmail.com");
     // localStorage.setItem('riderId', "3ea49ba7-28e5-422c-a06d-8407664dcc9e")
 
@@ -68,7 +70,7 @@ const Bidding = () => {
     var token = localStorage.getItem('token');
     var riderId = localStorage.getItem('riderId');
 
-  function handleAccept(orderId, email) {
+  function handleAccept(orderId, email, name) {
     setOrderLoading({ ...orderLoading, [orderId]: true });
 
     axios
@@ -112,11 +114,17 @@ const Bidding = () => {
                     },
                 }
                 )
-                .then((paymentResponse) => {
-                console.log('Payment Initialization Response:', paymentResponse.data.data.message);
+                .then((response) => {
+                    if (!response.data.succeeded) {
+                        console.log("Error", response.data.data.message)
+                    } else {
+                        navigate('/verify-email');
+                        console.log("Waiting for customer to make paymets");
+                    }
+                console.log('Payment Initialization Response:', response.data.data.message);
                 })
-                .catch((paymentError) => {
-                console.error('Error initializing payment:', paymentError);
+                .catch((error) => {
+                console.error('Error initializing payment:', error);
                 });
             }
         }
@@ -199,9 +207,12 @@ const Bidding = () => {
                     status: item.status,
                     orderId: item.orderId,
                     declined: false,
-                    email: item.email
+                    email: item.email,
+                    name: item.name
                 }));
-                setOrderHistory(extractedData);
+
+                const filteredData = extractedData.filter(item => !item.declined);
+                setOrderHistory(filteredData);
                 console.log("Hello", extractedData);
             } else {
                 console.error('Response data is not as expected:', data);
@@ -231,10 +242,11 @@ const Bidding = () => {
                                 item={entry.item}
                                 Amount={entry.Amount}
                                 orderId={entry.orderId}
-                                onAccept={() => handleAccept(entry.orderId, entry.email)}
+                                onAccept={() => handleAccept(entry.orderId, entry.email, entry.name)}
                                 onDecline={handleDecline}
                                 isDeclined={entry.declined}
                                 email={entry.email}
+                                name={entry.name}
                                 />
                             ))}
                         </div>

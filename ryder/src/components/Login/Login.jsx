@@ -110,10 +110,10 @@ const Login = () => {
               </div>
 
               <form action="" method="post" className="elements">
-                <h3 className={`${styles.login} mt-4`}>Login</h3>
+                <h3 className={`${styles.login} mt-2`}>Login</h3>
 
-                <div className="form-holder col-md-8">
-                  <label className="mt-4">
+                <div className="form-holder col-md-12">
+                  <label className="mt-2">
                     <b>Email</b>
                   </label>
                   <div className={`${styles.input_container}`}>
@@ -132,8 +132,8 @@ const Login = () => {
                     />
                   </div>
                 </div>
-                <div className="form-holder col-md-8">
-                  <label className="mt-4">
+                <div className="form-holder col-md-12">
+                  <label className="mt-2">
                     <b>Password</b>
                   </label>
                   <div className={`${styles.input_container}`}>
@@ -164,7 +164,7 @@ const Login = () => {
                 {/* Display error message */}
                 {error && (
                   <div
-                    className="error-message col-md-7"
+                    className="error-message col-md-12"
                     style={{ textAlign: "center", color: "red" }}
                   >
                     {error}
@@ -174,7 +174,7 @@ const Login = () => {
                 {/* Display success message */}
                 {successMessage && (
                   <div
-                    className={`${styles.messages1}form-holder col-md-7`}
+                    className={`${styles.messages1}form-holder col-md-12`}
                     style={{ textAlign: "center", color: "green" }}
                   >
                     <small>
@@ -185,14 +185,14 @@ const Login = () => {
                 {/* Display loading spinner */}
                 {loading && (
                   <div
-                    className={`${styles.messages2}form-holder col-md-7`}
+                    className={`${styles.messages2}form-holder col-md-12`}
                     style={{ textAlign: "center", color: "yellow" }}
                   >
                     <small>Loading...</small>
                   </div>
                 )}
 
-                <div className="form-holder col-md-8">
+                <div className="form-holder col-md-12">
                   <button
                     className={`${styles.submitting}`}
                     type="submit"
@@ -203,7 +203,7 @@ const Login = () => {
                   </button>
                 </div>
                 <div
-                  className="form-holder mt-4"
+                  className="form-holder mt-2"
                   style={{ textAlign: "left", marginTop: "25px" }}
                 >
                   <label>

@@ -23,6 +23,8 @@ import RiderHistory from "./components/Others/riderHistory";
 import Events from "./components/Others/events";
 import Bidding from "./components/Others/bidding";
 import VerifyPayment from "./components/Others/verifyPayment";
+import AcceptConfirmed from "./components/Others/acceptConfirmed";
+import WaitForPayments from "./components/Others/waitForPayments";
 
 function App() {
   return (
@@ -51,6 +53,8 @@ function App() {
           <Route path="/events" exact element={<Events />} />
           <Route path="/bidding" exact element={<Bidding />} />
           <Route path="/verify-payment" exact element={<VerifyPayment />} />
+          <Route path="/accpet-confirm" exact element={<AcceptConfirmed />} />
+          <Route path="/wait-for-payments" exact element={<WaitForPayments />} />
         </Routes>
       </div>
     </Router>

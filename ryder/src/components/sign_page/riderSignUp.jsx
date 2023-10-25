@@ -216,7 +216,7 @@ function RiderSignUp() {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-    
+            console.log("Hello", formData)
             if (!response.data.succeeded) {
                 setError('Unable to register at the moment, try again.');
             } else {
@@ -267,7 +267,7 @@ function RiderSignUp() {
 
                         <form action="" method="post" className='elements'>
                             <h2 className={`${styles.SignUp_H4} mt-4`}>Sign Up as a Rider</h2>
-                            <div className="form-holder col-md-8">
+                            <div className="form-holder col-md-12">
                                 <label className='mt-1'><b>First Name</b></label>
                                 <div className={`${styles.topper_container}`}>
                                     <img src={mailLogo} alt="" className={`${styles.icon}`} />
@@ -280,7 +280,7 @@ function RiderSignUp() {
                                     />
                                 </div>
                             </div>
-                            <div className="form-holder col-md-8">
+                            <div className="form-holder col-md-12">
                                 <label className='mt-1'><b>Last Name</b></label>
                                 <div className={`${styles.topper_container}`}>
                                     <input
@@ -293,7 +293,7 @@ function RiderSignUp() {
                                     <img src={mailLogo} alt="" className={`${styles.icon}`} />
                                 </div>
                             </div>
-                            <div className="form-holder col-md-8">
+                            <div className="form-holder col-md-12">
                                 <label className='mt-1'><b>Phone Number</b></label>
                                 <div className={`${styles.topper_container}`}>
                                     <input
@@ -307,7 +307,7 @@ function RiderSignUp() {
                                 </div>
                             </div>
 
-                            <div className="form-holder col-md-8">
+                            <div className="form-holder col-md-12">
                                 <label className='mt-1'><b>Email Address</b></label>
                                 <div className={`${styles.topper_container}`}>
                                     <input
@@ -320,7 +320,7 @@ function RiderSignUp() {
                                     <img src={mailLogo} alt="" className={`${styles.icon}`} />
                                 </div>
                             </div>
-                            <div className="form-holder col-md-8">
+                            <div className="form-holder col-md-12">
                                 <label className='mt-1'><b>Location</b></label>
                                 <div className="autocomplete-container">
                                     <PlacesAutocomplete
@@ -362,7 +362,7 @@ function RiderSignUp() {
                                 </PlacesAutocomplete>
                                 </div>
                             </div>
-                            <div className="form-holder col-md-8">
+                            <div className="form-holder col-md-12">
                                 <label className='mt-1'><b>Post Code</b></label>
                                 <div className={`${styles.input_container}`}>
                                     <input
@@ -375,7 +375,7 @@ function RiderSignUp() {
                                     <img src={PasswordLogo} alt="" className={`${styles.icon}`} />
                                 </div>
                             </div>
-                              <div className="form-holder col-md-8">
+                              <div className="form-holder col-md-12">
                                   <label className='mt-1'><b>Password</b></label>
                                   <div className={`${styles.input_container}`}>
                                       <input
@@ -388,7 +388,7 @@ function RiderSignUp() {
                                       <img src={PasswordLogo} alt="" className={`${styles.icon}`} />
                                   </div>
                               </div>
-                              <div className="form-holder col-md-8">
+                              <div className="form-holder col-md-12">
                                   <label className='mt-1'><b>Confirm Password</b></label>
                                   <div className={`${styles.input_container}`}>
                                       <input
@@ -401,7 +401,7 @@ function RiderSignUp() {
                                       <img src={PasswordLogo} alt="" className={`${styles.icon}`} />
                                   </div>
                               </div>
-                            <div className="form-holder col-md-8">
+                            <div className="form-holder col-md-12">
                                 
                             <label className='mt-2'><b>Bike Documents</b></label>
                             <div className={`input_container form-control ${styles.input_container}`}>
@@ -427,7 +427,7 @@ function RiderSignUp() {
                             </div>
                             </div>
 
-                            <div className="form-holder col-md-8">
+                            <div className="form-holder col-md-12">
                                 <label className='mt-2'><b>Valid ID</b></label>
                                 <div className={`input_container form-control ${styles.input_container}`}>
                                     <div className={`${styles.takers}`}>
@@ -452,7 +452,7 @@ function RiderSignUp() {
                                 </div>
                             </div>
 
-                            <div className="form-holder col-md-8">
+                            <div className="form-holder col-md-12">
                             <label className='mt-2'><b>Passport</b></label>
                             <div className={`input_container form-control ${styles.input_container}`}>
                                 <div className={`${styles.takers}`}>
@@ -479,13 +479,13 @@ function RiderSignUp() {
                             
 
                               {/* Display error message */}
-                              {error && <div className="error-message col-md-7" style={{ textAlign: 'center', justifyContent: 'center', color: 'red' }}>{error}</div>}
+                              {error && <div className="error-message col-md-12" style={{ textAlign: 'center', justifyContent: 'center', color: 'red' }}>{error}</div>}
                               {/* Display success message */}
-                              {successMessage && <div className={`${styles.messages1}form-holder col-md-7`} style={{ textAlign: 'center', color: 'green' }}>
+                              {successMessage && <div className={`${styles.messages1}form-holder col-md-12`} style={{ textAlign: 'center', color: 'green' }}>
                                   <small><b>{successMessage}</b></small>
                               </div>}
 
-                            <div className="form-holder col-md-8" >
+                            <div className="form-holder col-md-12" >
                                 <button
                                     className={`${styles.submitting}`}
                                     type="submit"
