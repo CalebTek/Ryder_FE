@@ -4,7 +4,8 @@ import '../../../src/styles/bidding.css';
 import info from '../../images/icons/Info.png'
 import RiderNavbar from '../dashboard/riderNavbar';
 import { useNavigate } from "react-router-dom";
-    
+import AcceptConfirmed from './acceptConfirmed';
+
 const Bidding = () => {
     const [orderHistory, setOrderHistory] = useState([]);
     const [error, setError] = useState('');
@@ -73,6 +74,7 @@ const Bidding = () => {
   function handleAccept(orderId, email, name) {
     setOrderLoading({ ...orderLoading, [orderId]: true });
 
+
     axios
         .post(
         `https://ryder-test.onrender.com/api/v1/Order/accept/`,
@@ -118,7 +120,7 @@ const Bidding = () => {
                     if (!response.data.succeeded) {
                         console.log("Error", response.data.data.message)
                     } else {
-                        navigate('/verify-email');
+                        navigate('/accept-confirm', { state: { name } });
                         console.log("Waiting for customer to make paymets");
                     }
                 console.log('Payment Initialization Response:', response.data.data.message);
