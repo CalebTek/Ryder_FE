@@ -5,15 +5,26 @@ import ryder from "../../images/ryder.svg";
 import { LinkContainer } from "react-router-bootstrap";
 import { BsBell } from "react-icons/bs";
 import { FaToggleOff, FaToggleOn } from "react-icons/fa";
-
 import defaultAvatar from "../../images/avatar.svg"; // Default avatar image
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import SignalRChat from "../SignalRChat";
 
 const RiderNavbar = () => {
+  const navigate = useNavigate();
   const [riderData, setRiderData] = useState({
     name: "",
     imageUrl: defaultAvatar, // Default URL to the rider's profile image
   });
+  
+  const [riderId, setRiderId] = useState("");
+  const [userId, setUserId] = useState("");
+  const [token, setToken] = useState("");
+  const [response, setResponse] = useState(null);
+  const [error, setError] = useState(null);
+  const [isOnline, setIsOnline] = useState(false);
+
+
   useEffect(() => {
     // Check if appUserId and token are available in localStorage
     const appUserId = localStorage.getItem("userId");
@@ -46,30 +57,87 @@ const RiderNavbar = () => {
         });
     }
   }, []);
-  const notifications = [
-    {
-      id: 1,
-      text: "New order received.",
-      date: "2 hours ago"
-    },
-    {
-      id: 2,
-      text: "Payment confirmed.",
-      date: "Yesterday"
-    },
-    {
-      id: 3,
-      text: "Delivery in progress.",
-      date: "3 days ago"
-    }
-  ];
 
-  const [isOnline, setIsOnline] = useState(false);
+  const handleLogout = () => {
+    const token = localStorage.getItem("token");
+
+    if (token) {
+      // Define the URL for logout
+      const logoutUrl = "https://ryder-test.onrender.com/api/v1/Authentication/Logout";
+
+      // Make an HTTP POST request to log out with authorization headers
+      axios
+        .post(logoutUrl, null, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+
+          localStorage.removeItem("token");
+          localStorage.removeItem("userId");
+
+          navigate("/login");
+        })
+        .catch((error) => {
+          console.error("Error logging out:", error);
+        });
+    }
+    localStorage.clear();
+  };
+
+  // const notifications = [
+  //   {
+  //     id: 1,
+  //     text: "New order received.",
+  //     date: "2 hours ago"
+  //   },
+  //   {
+  //     id: 2,
+  //     text: "Payment confirmed.",
+  //     date: "Yesterday"
+  //   },
+  //   {
+  //     id: 3,
+  //     text: "Delivery in progress.",
+  //     date: "3 days ago"
+  //   }
+  // ];
+
+ useEffect(() => {
+    const user = localStorage.getItem("userId");
+    setUserId(user);
+    const rider = localStorage.getItem("riderId");
+    setRiderId(rider);
+    const token = localStorage.getItem("token");
+    setToken(token);
+  }, []);
 
   const toggleOnlineStatus = () => {
     setIsOnline(!isOnline);
-  };
 
+    try {
+      const data = {
+        availabilityStatus: isOnline === true ? 2 : 1,
+      };
+      const response = axios.post(
+        `https://ryder-test.onrender.com/api/v1/Rider/update-availability/${riderId}`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setResponse(response.data);
+      console.log(response.data);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+  function logout() {
+    localStorage.clear();
+  }
   return (
     <Navbar bg="white" expand="lg">
       <Container>
@@ -84,7 +152,7 @@ const RiderNavbar = () => {
         <Navbar.Toggle aria-controls="navbar-nav" />
         <Navbar.Collapse id="navbar-nav">
           <Nav className="mx-auto">
-            <LinkContainer to="/rider-bidding">
+            <LinkContainer to="/bidding">
               <Nav.Link>Bidding</Nav.Link>
             </LinkContainer>
             <LinkContainer to="/ride-history">
@@ -113,37 +181,32 @@ const RiderNavbar = () => {
               />
             )}
             <LinkContainer to="/">
-              <Nav.Link>Logout</Nav.Link>
+                <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
             </LinkContainer>
           </Nav>
           <Nav>
             <Dropdown alignRight>
               <Dropdown.Toggle variant="transparent" className="nav-link">
-                <BsBell size={24} />
+                <BsBell size={24} color="black"/>
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                {notifications.map((notification) => (
-                  <Dropdown.Item key={notification.id}>
-                    <LinkContainer to="/notification">
-                      <div>{notification.text}</div>
-                    </LinkContainer>
-                    <div className="text-muted">{notification.date}</div>
-                  </Dropdown.Item>
-                ))}
+                <Dropdown.Item>
+                  <LinkContainer to="/notification">
+                    <SignalRChat />
+                  </LinkContainer>
+                  <div className="text-muted"></div>
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
             <div className="d-flex align-items-center ml-3">
               <Link to="/rider-profile">
                 <img
-                  src={riderData.imageUrl || defaultAvatar}
+                  src={riderData.imageUrl}
                   alt="Rider Avatar"
                   className="rider-avatar"
-                  onError={() => {
-                  setRiderData({ ...riderData, imageUrl: defaultAvatar });
-                }}
                 />
               </Link>
-              <span className="ml-2 ms-2">{" "}{riderData.name}</span>{" "}
+              <span className="ml-2">{riderData.name}</span>
             </div>
           </Nav>
         </Navbar.Collapse>
